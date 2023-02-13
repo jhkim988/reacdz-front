@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Home from "./component/body/Home";
+import LoginForm from "./component/body/LoginForm";
+import ArticleUpdateForm from "./component/body/ArticleUpdateForm";
+import ArticleView from "./component/body/ArticleView";
+import UserDetail from "./component/body/UserDetail";
+import Help from "./component/body/Help";
+import Header from "./component/header/Header";
+import ArticleCreateForm from "./component/body/ArticleCreateForm";
+import RegisterForm from "./component/body/RegisterForm";
+import LoginModel from "./model/LoginModel";
+import ArticleModel from './model/ArticleModel';
 
-function App() {
+const App = () => {
+  const [loginModel, loginController] = LoginModel();
+  const [articleModel, articleController] = ArticleModel();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header loginModel={loginModel} loginController={loginController}/>
+      <Routes>
+        <Route path="/" element={<Home articleController={articleController} articleModel={articleModel} />} />
+        <Route
+          path="/loginForm"
+          element={<LoginForm loginController={loginController} />}
+        />
+        <Route path="/registerForm" element={<RegisterForm />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/userDetail" element={<UserDetail />} />
+        <Route
+          path="/articleView/:id"
+          element={<ArticleView articleModel={articleModel} articleController={articleController} />}
+        />
+        <Route path="/articleCreateForm" element={<ArticleCreateForm />} />
+        <Route path="/articleUpdateForm/:id" element={<ArticleUpdateForm />} />
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
