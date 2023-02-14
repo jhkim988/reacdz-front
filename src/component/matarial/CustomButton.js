@@ -7,7 +7,7 @@ const CustomButton = ({ url, text, args, callback }) => {
     callback && callback(args);
     url && navigate(url);
   }, []);
-  return <button variant="contained" onClick={move}>{text}</button>;
+  return <button onClick={move}>{text}</button>;
 };
 
 export default CustomButton;

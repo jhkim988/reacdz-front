@@ -9,11 +9,11 @@ const Home = () => {
   useEffect(getArticleList, []);
   return (
     <>
-      <table>
+      <table style={{ margin: 'auto', width: '80%' }}>
         <thead>
           <tr>
-            <th>제목</th>
-            <th>작성자</th>
+            <th style={{ textAlign: 'center', borderBottom: '1px solid black' }}>제목</th>
+            <th style={{ textAlign: 'center', borderBottom: '1px solid black' }}>작성자</th>
           </tr>
         </thead>
         <tbody>
