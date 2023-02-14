@@ -1,10 +1,10 @@
 import Button from "./../matarial/Button";
 
-const LoggedInHeaderButtonSet = ({ setIsLoggedIn }) => {
+const LoggedInHeaderButtonSet = ({ loginModel: { user }, loginController: { logout } }) => {
   return (
     <>
-      <button onClick={() => setIsLoggedIn(false)}>로그아웃</button>
-      <Button url="/userDetail" text={"상세정보"} />
+      <button onClick={logout}>로그아웃</button>
+      <Button url="/userDetail" text={user.userName} />
     </>
   );
 };

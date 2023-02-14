@@ -1,15 +1,21 @@
 import { useReducer } from "react";
-import ArticleController from './../controller/ArticleController';
+import ArticleController from "./../controller/ArticleController";
 
-const ACTION = {
+const ACTION = Object.freeze({
   setArticle: (state, action) => ({ ...state, article: action.article }),
-  setArticleList: (state, action) => ({
+  setArticleForm: (state, action) => ({
     ...state,
-    articleList: action.articleList,
+    articleForm: {
+      ...state.articleForm,
+      [action.inputType]: action.inputValue,
+    },
   }),
-};
+  setArticleFormAll: (state, action) => ({
+    ...state,
+    articleForm: action.articleForm,
+  }),
+});
 
-Object.freeze(ACTION);
 
 const reducer = (state, action) =>
   ACTION[action.type] ? ACTION[action.type](state, action) : state;
@@ -17,7 +23,7 @@ const reducer = (state, action) =>
 const ArticleModel = () => {
   const [state, dispatch] = useReducer(reducer, {
     article: null,
-    articleList: [],
+    articleForm: { title: "", content: "" },
   });
   return [state, ArticleController({ state, dispatch })];
 };

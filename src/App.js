@@ -10,6 +10,8 @@ import ArticleCreateForm from "./component/body/ArticleCreateForm";
 import RegisterForm from "./component/body/RegisterForm";
 import LoginModel from "./model/LoginModel";
 import ArticleModel from './model/ArticleModel';
+import Forbidden from './component/matarial/Forbidden';
+import IsLogin from './component/matarial/IsLogin';
 
 const App = () => {
   const [loginModel, loginController] = LoginModel();
@@ -24,14 +26,18 @@ const App = () => {
           element={<LoginForm loginController={loginController} />}
         />
         <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="/userDetail" element={<UserDetail />} />
         <Route
           path="/articleView/:id"
           element={<ArticleView articleModel={articleModel} articleController={articleController} />}
         />
-        <Route path="/articleCreateForm" element={<ArticleCreateForm />} />
-        <Route path="/articleUpdateForm/:id" element={<ArticleUpdateForm />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/" element={<IsLogin loginController={loginController}/>}>
+          <Route path="/userDetail" element={<UserDetail loginModel={loginModel} loginController={loginController}/>} />
+          <Route path="/articleCreateForm" element={<ArticleCreateForm articleController={articleController}/>} />
+          <Route path="/articleUpdateForm/:id" element={<ArticleUpdateForm articleModel={articleModel} articleController={articleController} />} />
+        </Route>
+
+        <Route path="/forbidden" element={<Forbidden/>}/>
       </Routes>
     </>
   );

@@ -1,9 +1,9 @@
-const ArticleListItem = ({ articleId, title, articleController }) => {
+const ArticleListItem = ({ article: { id, title, userId }, articleListController: { clickView } }) => {
   return (
     <>
-      <tr data-id={articleId} onClick={articleController.clickView}>
+      <tr data-id={id} onClick={clickView}>
         <td>{title}</td>
-        <td>작성자</td>
+        <td>{userId}</td>
       </tr>
     </>
   );

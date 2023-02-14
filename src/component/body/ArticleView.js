@@ -19,7 +19,7 @@ const ArticleView = ({ articleModel, articleController }) => {
             url={`/articleUpdateForm/${articleModel.article.id}`}
             text="수정"
           />
-          <Button url="" text="삭제" />
+          <Button text="삭제" args={params.id} callback={articleController.articleDelete}/>
         </>
       )}
     </>

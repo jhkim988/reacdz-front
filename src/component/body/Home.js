@@ -1,27 +1,33 @@
 import { useEffect } from "react";
 import ArticleListItem from "./ArticleListItem";
+import Button from "./../matarial/Button";
+import ArticleListModel from './../../model/ArticleListModel';
 
-const Home = ({ articleController, articleModel }) => {
-  useEffect(articleController.getArticleList, []);
+const Home = () => {
+  const [articleListModel, articleListController] = ArticleListModel();
+  const { getArticleList } = articleListController;
+  useEffect(getArticleList, []);
   return (
     <>
       <p>게시글 목록</p>
       <table>
         <thead>
-          <th>제목</th>
-          <th>작성자</th>
+          <tr>
+            <th>제목</th>
+            <th>작성자</th>
+          </tr>
         </thead>
         <tbody>
-          {articleModel.articleList.map((article) => (
+          {articleListModel.map((article) => (
             <ArticleListItem
               key={`articleListItem#${article.id}`}
-              articleId={article.id}
-              title={article.title}
-              articleController={articleController}
+              article={article}
+              articleListController={articleListController}
             />
           ))}
         </tbody>
       </table>
+      <Button url="/articleCreateForm" text="글 쓰기" />
     </>
   );
 };
