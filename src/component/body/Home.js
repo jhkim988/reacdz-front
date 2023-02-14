@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ArticleListItem from "./ArticleListItem";
-import Button from "./../matarial/Button";
+import CustomButton from "./../matarial/CustomButton";
 import ArticleListModel from './../../model/ArticleListModel';
 
 const Home = () => {
@@ -9,7 +9,6 @@ const Home = () => {
   useEffect(getArticleList, []);
   return (
     <>
-      <p>게시글 목록</p>
       <table>
         <thead>
           <tr>
@@ -27,7 +26,7 @@ const Home = () => {
           ))}
         </tbody>
       </table>
-      <Button url="/articleCreateForm" text="글 쓰기" />
+      <CustomButton url="/articleCreateForm" text="글 쓰기" />
     </>
   );
 };

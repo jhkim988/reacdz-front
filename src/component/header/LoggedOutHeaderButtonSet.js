@@ -1,10 +1,10 @@
-import Button from "./../matarial/Button";
+import CustomButton from "./../matarial/CustomButton";
 
 const LoggedOutHeaderButtonSet = () => {
   return (
     <>
-      <Button url="/loginForm" text="로그인" />
-      <Button url="/registerForm" text="회원가입" />
+      <CustomButton url="/loginForm" text="로그인" />
+      <CustomButton url="/registerForm" text="회원가입" />
     </>
   );
 };

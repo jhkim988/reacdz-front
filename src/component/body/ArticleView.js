@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../matarial/Button";
+import CustomButton from "../matarial/CustomButton";
 
 const ArticleView = ({ articleModel, articleController }) => {
   const params = useParams();
@@ -15,11 +15,11 @@ const ArticleView = ({ articleModel, articleController }) => {
         <>
           <h3>{articleModel.article.title}</h3>
           <p>{articleModel.article.content}</p>
-          <Button
+          <CustomButton
             url={`/articleUpdateForm/${articleModel.article.id}`}
             text="수정"
           />
-          <Button text="삭제" args={params.id} callback={articleController.articleDelete}/>
+          <CustomButton text="삭제" args={params.id} callback={articleController.articleDelete}/>
         </>
       )}
     </>
